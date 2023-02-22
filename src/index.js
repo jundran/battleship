@@ -45,20 +45,17 @@ export function gameOver (winner) {
 }
 
 function restart () {
-	if (gameRunning) music.currentTime = 0
+	if (gameRunning) {
+		music.currentTime = 0
+		location.reload()
+	}
 	gameRunning = false
 	ocean.pause()
 	musicOn(true)
 	game()
 }
 
-function isRoundInProgress () {
-	return gameRunning && !computer.board.enabled
-}
-
 async function game () {
-	if (isRoundInProgress()) location.reload()
-
 	// Set up computer
 	computer = Player('Computer', true)
 	computer.board.populateShips()
